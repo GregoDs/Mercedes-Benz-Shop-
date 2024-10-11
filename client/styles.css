@@ -1,0 +1,144 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Your custom styles go here */
+
+body {
+ font-family: 'BRABUS_FONT', sans-serif;
+    /* Remove the background color and text color */
+    background-color: #fff; /* Set your desired background color */
+    color: #333; /* Set your desired text color */
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.product {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+}
+
+#checkout-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(204, 198, 198, 0.95); /* Semi-transparent white background */
+    box-shadow: 0 2px 4px rgba(15, 15, 15, 0.1); /* Drop shadow for a subtle effect */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    z-index: 1000;
+    color:#141414;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #858181; /* Set your desired text color */
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease-in-out;
+}
+
+nav a:hover {
+    color: #007AFF; /* Set your desired hover color */
+}
+
+#shop-icon {
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+#shop-icon:hover {
+    color: #007AFF; /* Set your desired hover color */
+}
+
+#pageSection1 {
+    background-image: url('https://www.brabus.com/_Resources/Persistent/7/6/5/0/7650a549e8414f1a8986e55c8b9a0a7cbfbae1a4/Brabus_911-turbo-s_Rocket_900_001.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    padding: 25px;
+    margin-left: 0%;
+    margin-right: 0%;
+    color: #fff;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 70%;
+    left: 20%;
+    transform: translate(-50%, -10%);
+    text-align: center;
+    font-family: 'Exo 2', sans-serif;
+    letter-spacing: 1px;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #141414;
+}
+
+#scrollToShop {
+    cursor: pointer;
+
+}
+
+
+
+#pageSection2 {
+    background-color: #fff; /* Set a background color */
+    color: black;
+    padding: 200px;
+    text-align: center;
+    font-family: 'Exo 2', sans-serif;
+    letter-spacing: 2px;
+    font-size: 24px;
+    text-transform: uppercase;
+    line-height: 1.5;
+}
+
+#pageSection3 {
+    background-color: #fff; /* Set a background color */
+    color: black;
+    padding: 200px;
+    text-align: center;
+    font-family: 'Exo 2', sans-serif;
+    letter-spacing: 2px;
+    font-size: 24px;
+    text-transform: uppercase;
+    line-height: 1.5;
+}
+
