@@ -52,20 +52,25 @@ body {
     cursor: pointer;
 }
 
+/* Initial header style */
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(204, 198, 198, 0.95); /* Semi-transparent white background */
-    box-shadow: 0 2px 4px rgba(15, 15, 15, 0.1); /* Drop shadow for a subtle effect */
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0); /* Transparent background */
+    box-shadow: rgba(0, 0, 0, 0) 0px 20px 40px -20px;
     display: flex;
+    box-sizing: border-box;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 10px;
-    z-index: 1000;
-    color:#141414;
+    padding: 30px 50px;
+    z-index: 1029;
+    color: #141414;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
+
 
 nav {
     display: flex;
@@ -94,7 +99,154 @@ nav a:hover {
     color: #007AFF; /* Set your desired hover color */
 }
 
+
+
+
+/*Page section styles */
 #pageSection1 {
+    background-size: cover;
+    background-position: center;
+    height: 91vh;
+    padding: 25px;
+    margin-left: 0%;
+    margin-right: 0%;
+    position: relative;
+    background-color: #fff;
+    color: white;
+}
+
+figcaption, figure, footer, hgroup, main, section {
+    display: block;
+    box-sizing: border-box;
+}
+
+.figcaption1{
+    text-transform: uppercase;
+        font-family: 'Exo 2', sans-serif;
+        letter-spacing: 2px;
+        font-size: 24px;    
+        line-height: 1.5;
+        text-decoration: none;
+        background-color: transparent;
+        margin-top: 390px;
+}
+
+.picture-teaser-button {
+    white-space: nowrap;
+    font-size: 15px;
+    letter-spacing: .96px;
+    padding-bottom: .375rem;
+    padding-top: .25rem;
+    margin-top: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: auto;
+    box-shadow: 0 20px 40px -18px rgba(0,0,0,.75)
+}
+
+.form--button-dark {
+    background-color: #000;
+    color: #fff;
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 30px;
+    padding: .5rem .75rem .75rem;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color .1s linear;
+    width: 100%;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 400;
+}
+
+
+.responsive-gutter, footer[class^=container] {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+    
+
+.main-entry {
+
+    align-items: center;
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.main-entry--bordered {
+    border: solid #ccc;
+    border-width: 0 0 1px;
+    height: 60px;
+}
+
+
+.main-entry a{
+        color: #000;
+        padding: 0 0 2px;
+        text-transform: uppercase;
+        font-family: 'Exo 2', sans-serif;
+        font-weight: 300;
+        letter-spacing: .96px;
+        font-size: 18px;    
+        line-height: 1.5;
+        text-decoration: none;
+        background-color: transparent;
+        margin-top: 10px;
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+
+.main-entry__item {
+        width: 23%;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        min-height: 40px;
+        text-align: center;
+    }
+
+    .video-slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.video-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.video-slide.active {
+    opacity: 1;
+}
+
+
+
+
+    #pageSection2 {
+    background-color: #fff; /* Set a background color */
+    color: black;
+    padding: 200px;
+    text-align: center;
+    font-family: 'Exo 2', sans-serif;
+    letter-spacing: 2px;
+    font-size: 24px;
+    text-transform: uppercase;
+    line-height: 1.5;
+}
+
+#pageSection12 {
     background-image: url('https://www.brabus.com/_Resources/Persistent/7/6/5/0/7650a549e8414f1a8986e55c8b9a0a7cbfbae1a4/Brabus_911-turbo-s_Rocket_900_001.jpg');
     background-size: cover;
     background-position: center;
@@ -128,17 +280,6 @@ nav a:hover {
     background-color: black;
 }
 
-#pageSection2 {
-    background-color: #fff; /* Set a background color */
-    color: black;
-    padding: 200px;
-    text-align: center;
-    font-family: 'Exo 2', sans-serif;
-    letter-spacing: 2px;
-    font-size: 24px;
-    text-transform: uppercase;
-    line-height: 1.5;
-}
 
 #pageSection3 {
     background-color: #fff; /* Set a background color */
@@ -291,27 +432,83 @@ h2 {
 
 <body class="bg-gray-100">
 
+<!--Header-->
     <header>
-        <nav>
-            <a href="#pageSection1"><i class="fa-solid fa-bolt"></i></a>
-            <a href="#titanium">Events</a>
-            <a href="#product-container"><i class="fa-solid fa-car"></i></a>
-            <a href="#reviewSection"><i class="fa-solid fa-comment"></i></a>
-        </nav>
-        <h1 class="text-xl font-bold">HCI bENZSHOP</h1>
+         <i class="fa-solid fa-store"></i>   
+       </div>
+        <img class="brand__logo" src="https://www.brabus.com/_Resources/Static/Packages/Wysiwyg.Brabus.Website/Images/logos/Logo--desktop.svg?bust=c929d569" alt="Brand Logo">
         <div id="shop-icon"><i class="fa-solid fa-car"></i></div>
     </header>
 
-    <section id="pageSection1" class="relative">
-        <div class="overlay">
-            <h2 class="font-size-medium">Mercedes BRABUS 750</h2>
-            <p>Bodo Buschmann Edition "1 of 25"</p>
-            <button id="scrollToShop" class="bg-red-500 text-white px-4 py-2 rounded mt-4">Rev up</button>
 
-        </div>
-    </section>
-    
+<!--Home Page-->
 
+<section id="pageSection1" class="relative h-screen">
+    <div class="absolute inset-0 bg-cover bg-center z-10">
+        <div class="video-slides">
+            <div class="video-slide active">
+                <video autoplay muted playsinline class="w-full h-full object-cover">
+                    <source src="https://www.brabus.com/_Resources/Persistent/a/d/2/e/ad2e95c7df7f383ae4c4f895b3b2ae0c734c4d69/Sunreef%20X%20Brabus%20Trailer_WEBTEASER.mp4" type="video/mp4">
+                </video>
+                <figcaption class="absolute inset-0 flex flex-col justify-center items-center text-center text-white z-20">
+                    <h2 class="figcaption1">Together, beyond boundaries.</h2>
+                    <p></p>
+                    <p class="figcaption2">
+                        <a href="/en-int/coops/brabus-x-sunreef.html" class="form--button-dark picture-teaser-button" tabindex="-1">
+                            <span>BRABUS X Gregory</span>
+                        </a>
+                    </p>
+                    <ul class="slick-dots flex space-x-2 mt-4" role="tablist">
+                        <li class="" role="presentation" aria-selected="true"><button type="button" class="dot" data-index="0" role="button" tabindex="0">-----</button></li>
+                        <li class="" role="presentation" aria-selected="false"><button type="button" class="dot" data-index="1" role="button" tabindex="0">-----</button></li>
+                       
+                    </ul>
+                </figcaption>
+            </div>
+
+            <div class="video-slide">
+                <video muted playsinline class="w-full h-full object-cover">
+                    <source src="https://www.brabus.com/_Resources/Persistent/d/9/8/1/d981851168df270388b3859d04aeb295cad02e04/WEBTEASER_BRABUS_1000_Rocket_Edition_WEBTEASER.mp4" type="video/mp4">
+                </video>
+                <figcaption class="absolute inset-0 flex flex-col justify-center items-center text-center text-white z-20">
+                    <h2 class="figcaption1">The Rocket Revolution.</h2>
+                    <p></p>
+                    <p class="figcaption2">
+                        <a href="/en-int/cars/supercars/brabus-1000-gt.html" class="form--button-dark picture-teaser-button" tabindex="0">
+                            <span>BRABUS ROCKET 1000 "1 OF 25"</span>
+                        </a>
+                    </p>
+                    <ul class="slick-dots flex space-x-2 mt-4" role="tablist">
+                        <li class="" role="presentation" aria-selected="true"><button type="button" class="dot" data-index="0" role="button" tabindex="0">-----</button></li>
+                        <li class="" role="presentation" aria-selected="false"><button type="button" class="dot" data-index="1" role="button" tabindex="1">-----</button></li>
+                        <!-- Add more buttons for each slide -->
+                    </ul>
+                </figcaption>
+            </div>
+        
+    </div>
+
+    <section id ="pageSection1Footer" class="container-fluid responsive-gutter">
+        <nav class="main-entry main-entry--bordered ">
+            <a class="main-entry__item" href="/en-int/cars/supercars.html">
+                <span class="main-entry--text">supercars</span>
+            </a>
+                <a class="main-entry__item" href="/en-int/cars/tuning/for-mercedes.html">
+                    <span class="main-entry--text">tuning</span>
+                </a>
+                    <a class="main-entry__item" href="/en-int/cars/classics.html">
+                        <span class="main-entry--text">classics</span>
+                    </a>
+                    <a class="main-entry__item" href="/en-int/cars/cars-for-sale.html">
+                        <span class="main-entry--text">cars4sale</span>
+                    </a>
+                </nav>
+            </section>
+            </div>
+
+</section>
+
+    <!--Page Section 2-->
 
     <section id="pageSection2">
         <p>SUPERCARS</p>
@@ -319,6 +516,20 @@ h2 {
         <p>consummate technology, sophisticated art of engineering, and custom craftsmanship make each and every one of our supercars unique in its class.</p>
     </section>
 
+    <!--Page Section 12-->
+    
+    <section id="pageSection12" class="relative">
+        <div class="overlay">
+            <h2 class="font-size-medium">Mercedes BRABUS 750</h2>
+            <p>Bodo Buschmann Edition "1 of 25"</p>
+            <button id="scrollToShop" class="bg-red-500 text-white px-4 py-2 rounded mt-4">Rev up</button>
+
+        </div>
+    </section>
+
+
+
+    <!--Page Section Titanium-->
 
     <section id="titanium" class="relative h-screen">
         <div class="absolute inset-0 bg-cover bg-center z-10">
@@ -422,6 +633,63 @@ document.getElementById('scrollToShop').addEventListener('click', () => {
     shopSection.scrollIntoView({ behavior: 'smooth' });
 });
 
+//Video Slides animations and functionality
+document.addEventListener("DOMContentLoaded", function() {
+    const slides = document.querySelectorAll('.video-slide');
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        slides[currentIndex].classList.remove('active');
+        dots[currentIndex].parentElement.setAttribute('aria-selected', 'false');
+
+        currentIndex = index;
+
+        slides[currentIndex].classList.add('active');
+        dots[currentIndex].parentElement.setAttribute('aria-selected', 'true');
+
+        const currentVideo = slides[currentIndex].querySelector('video');
+        currentVideo.currentTime = 0; // Reset video time
+        currentVideo.play(); // Play the next video
+    }
+
+    function showNextSlide() {
+        const nextIndex = (currentIndex + 1) % slides.length;
+        showSlide(nextIndex);
+    }
+
+    // Event listener for video end
+    slides.forEach(slide => {
+        const video = slide.querySelector('video');
+        video.addEventListener('ended', showNextSlide);
+    });
+
+    // Dots click event
+    dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            showSlide(index);
+        });
+    });
+
+    // Start playing the first video
+    slides[currentIndex].querySelector('video').play();
+});
+
+
+
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 590) {
+        // When scrolled down, apply new background and shadow
+        header.style.backgroundColor = 'rgba(255, 255, 255, 0.986)'; // Less transparent background
+        header.style.boxShadow = 'rgba(0, 0, 0, 0.1) 0px 20px 40px -20px'; // Add shadow
+    } else {
+        // Reset to initial style when at the top of the page
+        header.style.backgroundColor = 'rgba(255, 255, 255, 0)'; // Fully transparent
+        header.style.boxShadow = 'rgba(0, 0, 0, 0) 0px 20px 40px -20px'; // No shadow
+    }
+});
 
   document.addEventListener('DOMContentLoaded', function () {
     // Get all thumbs-up and thumbs-down icons
