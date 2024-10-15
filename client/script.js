@@ -1,9 +1,90 @@
-// Replace with your actual Stripe publishable key
-//const stripe = Stripe('your_publishable_key');
-
 document.getElementById('scrollToShop').addEventListener('click', () => {
     const shopSection = document.getElementById('product-container');
     shopSection.scrollIntoView({ behavior: 'smooth' });
+});
+
+//Video Slides animations and functionality
+document.addEventListener("DOMContentLoaded", function() {
+    const slides = document.querySelectorAll('.video-slide');
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        slides[currentIndex].classList.remove('active');
+        dots[currentIndex].parentElement.setAttribute('aria-selected', 'false');
+
+        currentIndex = index;
+
+        slides[currentIndex].classList.add('active');
+        dots[currentIndex].parentElement.setAttribute('aria-selected', 'true');
+
+        const currentVideo = slides[currentIndex].querySelector('video');
+        currentVideo.currentTime = 0; // Reset video time
+        currentVideo.play(); // Play the next video
+    }
+
+    function showNextSlide() {
+        const nextIndex = (currentIndex + 1) % slides.length;
+        showSlide(nextIndex);
+    }
+
+    // Event listener for video end
+    slides.forEach(slide => {
+        const video = slide.querySelector('video');
+        video.addEventListener('ended', showNextSlide);
+    });
+
+    // Dots click event
+    dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            showSlide(index);
+        });
+    });
+
+    // Start playing the first video
+    slides[currentIndex].querySelector('video').play();
+});
+
+
+
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 590) {
+        // When scrolled down, apply new background and shadow
+        header.style.backgroundColor = 'rgba(255, 255, 255, 0.986)'; // Less transparent background
+        header.style.boxShadow = 'rgba(0, 0, 0, 0.1) 0px 20px 40px -20px'; // Add shadow
+    } else { 
+        // Reset to initial style when at the top of the page
+        header.style.backgroundColor = 'rgba(255, 255, 255, 0)'; // Fully transparent
+        header.style.boxShadow = 'rgba(0, 0, 0, 0) 0px 20px 40px -20px'; // No shadow
+    }
+});
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Get all thumbs-up and thumbs-down icons
+    const thumbsUpIcons = document.querySelectorAll('.fa-thumbs-up');
+    const thumbsDownIcons = document.querySelectorAll('.fa-thumbs-down');
+
+    thumbsUpIcons.forEach(function (thumbsUpIcon, index) {
+        thumbsUpIcon.addEventListener('click', function () {
+            // Toggle the 'liked' class for the specific product
+            thumbsUpIcon.classList.toggle('liked');
+
+            // Remove 'disliked' class for the same product
+            thumbsDownIcons[index].classList.remove('disliked');
+        });
+    });
+
+    thumbsDownIcons.forEach(function (thumbsDownIcon, index) {
+        thumbsDownIcon.addEventListener('click', function () {
+            // Toggle the 'disliked' class for the specific product
+            thumbsDownIcon.classList.toggle('disliked');
+
+            // Remove 'liked' class for the same product
+            thumbsUpIcons[index].classList.remove('liked');
+        });
+    });
 });
 
 
@@ -83,6 +164,8 @@ const products = [
     },
 ];
 
+
+
 const productContainer = document.getElementById('product-container');
 
 // Function to create the HTML for a single product
@@ -92,7 +175,9 @@ function createProductHTML(product) {
             <img src="${product.image}" alt="${product.name}">
             <h3>${product.name}</h3>
             <p>Price: $${(product.price / 100).toFixed(2)}</p>
+            <i class="fa-solid fa-thumbs-up"></i>
             <button class="buy-button">Buy Now</button>
+            <i class="fa-solid fa-thumbs-down"></i>
         </div>
     `;
 }
@@ -103,9 +188,16 @@ products.forEach(product => {
     productContainer.innerHTML += productHTML;
 });
 
-// Event listener for Buy Now buttons
-document.querySelectorAll('.buy-button').forEach((button, index) => {
-    button.addEventListener('click', () => {
+
+// Get all product buttons
+const buyButtons = document.querySelectorAll('.buy-button');
+
+// Add click event listener to each buy button
+buyButtons.forEach((button, index) => {
+    button.addEventListener('click', (event) => {
+        // Prevent the click event from bubbling up to the product element
+        event.stopPropagation();
+
         // Call your server to create a Checkout Session
         fetch('/create-checkout-session', {
             method: 'POST',
@@ -113,13 +205,15 @@ document.querySelectorAll('.buy-button').forEach((button, index) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                productId: index + 1, // Use a unique identifier for each product
+                productId: products[index].id, // Send the product ID to the server
             }),
         })
         .then(response => response.json())
         .then(session => {
             // When the customer clicks on the button, redirect them to Checkout.
-            return stripe.redirectToCheckout({ sessionId: session.id });
+            return stripe.redirectToCheckout({
+                sessionId: session.id,
+            });
         })
         .then(result => {
             if (result.error) {
@@ -131,3 +225,55 @@ document.querySelectorAll('.buy-button').forEach((button, index) => {
         });
     });
 });
+
+
+ //rEVIEWS SECTION
+document.getElementById('scrollToReviews').addEventListener('click', () => {
+    const reviewSec = document.getElementById('reviews');
+    reviewSec.scrollIntoView({ behavior: 'smooth' });
+});
+ 
+
+let slideIndex = 0;
+
+function showSlides() {
+    let slides = document.getElementsByClassName("mySlides");
+    
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    slideIndex++;
+    if (slideIndex > slides.length) {
+        slideIndex = 1;
+    }
+
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(showSlides, 5000); // Change slide every 2 seconds
+}
+
+showSlides(); // Start the slideshow
+
+document.getElementById("addCommentButton").addEventListener("click", function () {
+    const commentInput = document.getElementById("commentInput").value;
+    if (commentInput.trim() !== "") {
+        const commentDiv = document.createElement("div");
+        commentDiv.textContent = commentInput;
+        document.getElementById("comments").appendChild(commentDiv);
+        document.getElementById("commentInput").value = "";
+    }
+});
+//stars
+document.addEventListener('DOMContentLoaded', function () {
+    const stars = document.querySelectorAll('.stars i');
+
+    stars.forEach((star, index) => {
+        star.addEventListener('click', function () {
+            // Toggle the rated class for the clicked star and all preceding stars
+            for (let i = 0; i <= index; i++) {
+                stars[i].classList.toggle('rated');
+            }
+        });
+    });
+});
+
